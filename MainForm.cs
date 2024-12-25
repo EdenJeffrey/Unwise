@@ -33,7 +33,6 @@
 
         private void InitializeEventHandler()
         {
-            // Initialize the event handler
             eventHandler = new EventHandler(hierarchyTree, contextMenu, propertyGrid);
         }
 
