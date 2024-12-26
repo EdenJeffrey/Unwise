@@ -1,15 +1,33 @@
-﻿namespace Unwise
+﻿using System.Runtime.Serialization;
+
+namespace Unwise
 {
     // Randomly selects a descendant container for playback, hashes previously played containers for performant comparison
+    [DataContract]
     public class RandomContainer : MultiContainer
     {
+        [DataMember]
         public override List<Container> Containers { get; set; }
+        [DataMember]
         public int AvoidRepeatingLast { get; set; }
         protected List<int> LastPlayedHashes { get; set; }
 
-        public RandomContainer() { }
+        public RandomContainer()
+        {
+            AvoidRepeatingLast = 1;
+            LastPlayedHashes = new List<int>();
+            Containers = new List<Container>();
+        }
         public RandomContainer(string name) : base(name)
         {
+            AvoidRepeatingLast = 1;
+            LastPlayedHashes = new List<int>();
+            Containers = new List<Container>();
+        }
+
+        public RandomContainer(string name, IEnumerable<Container> containers = null) : base(name)
+        {
+            Containers = containers?.ToList() ?? new List<Container>();
             AvoidRepeatingLast = 1;
             LastPlayedHashes = new List<int>();
             Containers = new List<Container>();

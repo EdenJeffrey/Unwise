@@ -1,18 +1,29 @@
-﻿using System.Xml.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace Unwise
 {
     // Parent container class, all containers type will derive from this class
-    [XmlInclude(typeof(AudioContainer))]
-    [XmlInclude(typeof(RandomContainer))]
-    [XmlInclude(typeof(MultiContainer))]
+    [DataContract]
+    [KnownType(typeof(AudioContainer))]
+    [KnownType(typeof(MultiContainer))]
+    [KnownType(typeof(RandomContainer))]
     public class Container
     {
+        [DataMember]
         public string Name { get; set; }
+        [DataMember]
         public string Type { get; set; }
+        [DataMember]
         public float Volume { get; set; }
+        [DataMember]
         public float Pitch { get; set; }
-        public Container() { }
+        public Container()
+        {
+            Name = string.Empty;
+            Type = GetType().Name;
+            Volume = 1;
+            Pitch = 1;
+        }
 
         public Container(string name)
         {

@@ -1,11 +1,18 @@
-﻿namespace Unwise
+﻿using System.Runtime.Serialization;
+
+namespace Unwise
 {
     // Parent multi container class, all multi audio container class derive from this, e.e random, sequence, switch etc etc.
+    [DataContract]
     public class MultiContainer : Container
     {
+        [DataMember]
         public virtual List<Container> Containers { get; set; }
 
-        public MultiContainer() { }
+        public MultiContainer()
+        {
+            Containers = new List<Container>();
+        }
         public MultiContainer(string name) : base(name)
         {
             Containers = new List<Container>();

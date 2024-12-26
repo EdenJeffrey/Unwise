@@ -1,31 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Xml.Serialization;
-using System.Windows.Forms;
+﻿using System.Runtime.Serialization;
 
 namespace Unwise
 {
+    [DataContract]
+    public class TreeNodeSerializable
+    {
+        [DataMember]
+        public Container Data { get; set; }
+
+        [DataMember]
+        public List<TreeNodeSerializable> Children { get; set; } = new List<TreeNodeSerializable>();
+    }
+
     public static class Serialization
     {
-        // XML Serialization
+        private static readonly DataContractSerializerSettings Settings = new DataContractSerializerSettings
+        {
+            PreserveObjectReferences = true
+        };
+        // Serialization
         public static void SerializeToXml<T>(T obj, string filePath)
         {
-            var serializer = new XmlSerializer(typeof(T));
-            using (var writer = new StreamWriter(filePath))
+            var serializer = new DataContractSerializer(typeof(T), Settings);
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
-                serializer.Serialize(writer, obj);
+                serializer.WriteObject(fileStream, obj);
             }
         }
 
         public static T DeserializeFromXml<T>(string filePath)
         {
-            var serializer = new XmlSerializer(typeof(T));
-            using (var reader = new StreamReader(filePath))
+            var serializer = new DataContractSerializer(typeof(T));
+            using (var fileStream = new FileStream(filePath, FileMode.Open))
             {
-                return (T)serializer.Deserialize(reader);
+                return (T)serializer.ReadObject(fileStream);
             }
         }
 

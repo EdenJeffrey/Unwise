@@ -1,11 +1,18 @@
-﻿namespace Unwise
+﻿using System.Runtime.Serialization;
+
+namespace Unwise
 {
     // Basic audio container, stores path to file for playback
+    [DataContract]
     public class AudioContainer : Container
     {
+        [DataMember]
         public string AudioFilePath { get; set; }
 
-        public AudioContainer() { }
+        public AudioContainer()
+        {
+            AudioFilePath = "";
+        }
         public AudioContainer(string name) : base(name)
         {
             AudioFilePath = "";
