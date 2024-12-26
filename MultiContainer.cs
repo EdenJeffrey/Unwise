@@ -3,7 +3,7 @@
     // Parent multi container class, all multi audio container class derive from this, e.e random, sequence, switch etc etc.
     public class MultiContainer : Container
     {
-        public List<Container> Containers { get; private set; }
+        public virtual List<Container> Containers { get; set; }
 
         public MultiContainer() { }
         public MultiContainer(string name) : base(name)

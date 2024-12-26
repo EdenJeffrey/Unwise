@@ -3,6 +3,7 @@
     // Randomly selects a descendant container for playback, hashes previously played containers for performant comparison
     public class RandomContainer : MultiContainer
     {
+        public override List<Container> Containers { get; set; }
         public int AvoidRepeatingLast { get; set; }
         protected List<int> LastPlayedHashes { get; set; }
 
@@ -11,6 +12,7 @@
         {
             AvoidRepeatingLast = 1;
             LastPlayedHashes = new List<int>();
+            Containers = new List<Container>();
         }
 
         public override Container GetContainerToPlay()
@@ -20,6 +22,8 @@
                 return GetRandomItem(Containers);
             }
 
+            if (LastPlayedHashes == null) LastPlayedHashes = new List<int>();
+            if (Containers == null) Containers = new List<Container>();
             // Filter containers to exclude those with hashes in LastPlayedHashes
             var availableContainers = Containers
                 .Where(c => c != null && !LastPlayedHashes.Contains(GetContainerHash(c)))
@@ -32,6 +36,7 @@
                 availableContainers = Containers.Where(c => c != null).ToList();
             }
 
+            if (availableContainers.Count < 1) return new Container();
             var randomContainer = GetRandomItem(availableContainers);
 
             // Update LastPlayedHashes

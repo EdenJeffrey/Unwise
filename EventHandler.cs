@@ -91,6 +91,14 @@ namespace Unwise
                 }
                 else if (targetNode == null)
                 {
+                    var parentNode = draggedNode.Parent;
+                    if (draggedNode?.Tag is Container container)
+                    {
+                        if (parentNode?.Tag is MultiContainer multiContainer)
+                        {
+                            multiContainer.RemoveContainer(container);
+                        }
+                    }
                     // If dropped into the empty tree, move the dragged node to the tree root
                     draggedNode.Remove();
                     _hierarchyTree.Nodes.Add(draggedNode);
