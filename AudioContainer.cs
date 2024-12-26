@@ -5,6 +5,7 @@
     {
         public string AudioFilePath { get; set; }
 
+        public AudioContainer() { }
         public AudioContainer(string name) : base(name)
         {
             AudioFilePath = "";

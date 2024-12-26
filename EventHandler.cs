@@ -146,6 +146,18 @@ namespace Unwise
                     RenameContainer(_hierarchyTree.SelectedNode);
                 }
             }
+
+            if (e.KeyCode == Keys.F3)
+            {
+                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Test.xml");
+                Serialization.SerializeTreeViewToXml(_hierarchyTree, path);
+            }
+
+            if (e.KeyCode == Keys.F4)
+            {
+                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Test.xml");
+                Serialization.DeserializeTreeViewFromXml(_hierarchyTree, path);
+            }
         }
 
         // Dynamically populate context menu for hierarchy tree dependent on what is clicked

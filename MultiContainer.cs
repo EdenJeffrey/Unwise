@@ -5,6 +5,7 @@
     {
         public List<Container> Containers { get; private set; }
 
+        public MultiContainer() { }
         public MultiContainer(string name) : base(name)
         {
             Containers = new List<Container>();

@@ -1,11 +1,12 @@
 ﻿namespace Unwise
 {
     // Randomly selects a descendant container for playback, hashes previously played containers for performant comparison
-    internal class RandomContainer : MultiContainer
+    public class RandomContainer : MultiContainer
     {
-        public int AvoidRepeatingLast { get; private set; }
-        protected List<int> LastPlayedHashes { get; private set; }
+        public int AvoidRepeatingLast { get; set; }
+        protected List<int> LastPlayedHashes { get; set; }
 
+        public RandomContainer() { }
         public RandomContainer(string name) : base(name)
         {
             AvoidRepeatingLast = 1;
