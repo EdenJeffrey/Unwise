@@ -30,3 +30,4 @@ namespace Unwise
 //TODO - Add seek to playback bar
 //TODO - Change container volume control from percentage to decibel offset
 //x - Add project saving
+//TODO - Make project save file just act as a reference for the project data location (save will create a project folder and a proj file within, then serialize all data to XMLs in respective folders)
