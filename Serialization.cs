@@ -1,15 +1,15 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Unwise
+namespace Unwise_Serialization
 {
     [DataContract]
-    public class TreeNodeSerializable
+    public class Container
     {
         [DataMember]
-        public Container Data { get; set; }
+        public Unwise.Container Data { get; set; }
 
         [DataMember]
-        public List<TreeNodeSerializable> Children { get; set; } = new List<TreeNodeSerializable>();
+        public List<Container> Children { get; set; } = new List<Container>();
     }
 
     public static class Serialization
@@ -40,7 +40,7 @@ namespace Unwise
         // TreeView-Specific Serialization
         public static void SerializeTreeViewToXml(TreeView treeView, string filePath)
         {
-            var rootNodes = new List<TreeNodeSerializable>();
+            var rootNodes = new List<Container>();
             foreach (TreeNode rootNode in treeView.Nodes)
             {
                 rootNodes.Add(ConvertToSerializable(rootNode));
@@ -50,7 +50,7 @@ namespace Unwise
 
         public static void DeserializeTreeViewFromXml(TreeView treeView, string filePath)
         {
-            var rootNodes = DeserializeFromXml<List<TreeNodeSerializable>>(filePath);
+            var rootNodes = DeserializeFromXml<List<Container>>(filePath);
             treeView.Nodes.Clear();
             foreach (var rootNode in rootNodes)
             {
@@ -59,12 +59,12 @@ namespace Unwise
         }
 
         // Helper Methods for TreeView
-        private static TreeNodeSerializable ConvertToSerializable(TreeNode node)
+        private static Container ConvertToSerializable(TreeNode node)
         {
-            var serializableNode = new TreeNodeSerializable
+            var serializableNode = new Container
             {
-                Data = node.Tag as Container, // Assuming Container is stored in the Tag property
-                Children = new List<TreeNodeSerializable>()
+                Data = node.Tag as Unwise.Container, // Assuming Container is stored in the Tag property
+                Children = new List<Container>()
             };
 
             foreach (TreeNode childNode in node.Nodes)
@@ -75,7 +75,7 @@ namespace Unwise
             return serializableNode;
         }
 
-        private static TreeNode ConvertToTreeNode(TreeNodeSerializable serializableNode)
+        private static TreeNode ConvertToTreeNode(Container serializableNode)
         {
             var treeNode = new TreeNode
             {

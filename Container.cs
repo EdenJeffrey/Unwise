@@ -12,15 +12,12 @@ namespace Unwise
         [DataMember]
         public string Name { get; set; }
         [DataMember]
-        public string Type { get; set; }
-        [DataMember]
         public float Volume { get; set; }
         [DataMember]
         public float Pitch { get; set; }
         public Container()
         {
-            Name = string.Empty;
-            Type = GetType().Name;
+            Name = GetType().Name;
             Volume = 1;
             Pitch = 1;
         }
@@ -28,7 +25,6 @@ namespace Unwise
         public Container(string name)
         {
             Name = name;
-            Type = GetType().Name;
             Volume = 1;
             Pitch = 1;
         }

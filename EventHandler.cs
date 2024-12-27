@@ -157,14 +157,13 @@ namespace Unwise
 
             if (e.KeyCode == Keys.F3)
             {
-                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Test.xml");
-                Serialization.SerializeTreeViewToXml(_hierarchyTree, path);
+
             }
 
             if (e.KeyCode == Keys.F4)
             {
-                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Test.xml");
-                Serialization.DeserializeTreeViewFromXml(_hierarchyTree, path);
+                //string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Test.xml");
+
             }
         }
 
@@ -284,7 +283,7 @@ namespace Unwise
             }
         }
 
-        private void RenameContainer(TreeNode node)
+        public void RenameContainer(TreeNode node)
         {
             if (node != null)
             {
@@ -292,7 +291,7 @@ namespace Unwise
             }
         }
 
-        private void DeleteContainer(TreeNode node)
+        public void DeleteContainer(TreeNode node)
         {
             if (node == null) return;
 
@@ -409,6 +408,5 @@ namespace Unwise
 
             return node;
         }
-
     }
 }

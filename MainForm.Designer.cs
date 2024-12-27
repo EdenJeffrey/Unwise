@@ -35,7 +35,15 @@
             transportPlay = new Button();
             hierarchyTreeMain = new TreeView();
             propertyGridMain = new PropertyGrid();
+            MenuStrip = new MenuStrip();
+            MenuStripFile = new ToolStripMenuItem();
+            FileNew = new ToolStripMenuItem();
+            FileOpen = new ToolStripMenuItem();
+            FileSaveAs = new ToolStripMenuItem();
+            MenuStripEdit = new ToolStripMenuItem();
+            EditRename = new ToolStripMenuItem();
             transport.SuspendLayout();
+            MenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // transport
@@ -94,20 +102,71 @@
             hierarchyTreeMain.AllowDrop = true;
             hierarchyTreeMain.HideSelection = false;
             hierarchyTreeMain.LabelEdit = true;
-            hierarchyTreeMain.Location = new Point(0, 0);
+            hierarchyTreeMain.Location = new Point(0, 27);
             hierarchyTreeMain.Name = "hierarchyTreeMain";
-            hierarchyTreeMain.Size = new Size(249, 399);
+            hierarchyTreeMain.Size = new Size(249, 372);
             hierarchyTreeMain.TabIndex = 1;
             // 
             // propertyGridMain
             // 
             propertyGridMain.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             propertyGridMain.HelpVisible = false;
-            propertyGridMain.Location = new Point(573, 0);
+            propertyGridMain.Location = new Point(573, 27);
             propertyGridMain.Name = "propertyGridMain";
-            propertyGridMain.Size = new Size(227, 399);
+            propertyGridMain.Size = new Size(227, 372);
             propertyGridMain.TabIndex = 2;
             propertyGridMain.ToolbarVisible = false;
+            // 
+            // MenuStrip
+            // 
+            MenuStrip.Items.AddRange(new ToolStripItem[] { MenuStripFile, MenuStripEdit });
+            MenuStrip.Location = new Point(0, 0);
+            MenuStrip.Name = "MenuStrip";
+            MenuStrip.Size = new Size(800, 24);
+            MenuStrip.TabIndex = 3;
+            MenuStrip.Text = "MenuStrip";
+            // 
+            // MenuStripFile
+            // 
+            MenuStripFile.DropDownItems.AddRange(new ToolStripItem[] { FileNew, FileOpen, FileSaveAs });
+            MenuStripFile.Name = "MenuStripFile";
+            MenuStripFile.Size = new Size(37, 20);
+            MenuStripFile.Text = "File";
+            // 
+            // FileNew
+            // 
+            FileNew.Name = "FileNew";
+            FileNew.Size = new Size(180, 22);
+            FileNew.Text = "New";
+            FileNew.Click += FileNew_Click;
+            // 
+            // FileOpen
+            // 
+            FileOpen.Name = "FileOpen";
+            FileOpen.Size = new Size(180, 22);
+            FileOpen.Text = "Open";
+            FileOpen.Click += FileOpen_Click;
+            // 
+            // FileSaveAs
+            // 
+            FileSaveAs.Name = "FileSaveAs";
+            FileSaveAs.Size = new Size(180, 22);
+            FileSaveAs.Text = "Save As";
+            FileSaveAs.Click += FileSaveAs_Click;
+            // 
+            // MenuStripEdit
+            // 
+            MenuStripEdit.DropDownItems.AddRange(new ToolStripItem[] { EditRename });
+            MenuStripEdit.Name = "MenuStripEdit";
+            MenuStripEdit.Size = new Size(39, 20);
+            MenuStripEdit.Text = "Edit";
+            // 
+            // EditRename
+            // 
+            EditRename.Name = "EditRename";
+            EditRename.Size = new Size(180, 22);
+            EditRename.Text = "Rename";
+            EditRename.Click += EditRename_Click;
             // 
             // MainForm
             // 
@@ -117,10 +176,15 @@
             Controls.Add(propertyGridMain);
             Controls.Add(hierarchyTreeMain);
             Controls.Add(transport);
+            Controls.Add(MenuStrip);
+            MainMenuStrip = MenuStrip;
             Name = "MainForm";
             Text = "MainForm";
             transport.ResumeLayout(false);
+            MenuStrip.ResumeLayout(false);
+            MenuStrip.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -132,5 +196,12 @@
         private Button transportPause;
         private TreeView hierarchyTree;
         private PropertyGrid propertyGridMain;
+        private MenuStrip MenuStrip;
+        private ToolStripMenuItem MenuStripFile;
+        private ToolStripMenuItem FileNew;
+        private ToolStripMenuItem FileOpen;
+        private ToolStripMenuItem FileSaveAs;
+        private ToolStripMenuItem MenuStripEdit;
+        private ToolStripMenuItem EditRename;
     }
 }

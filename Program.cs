@@ -29,4 +29,4 @@ namespace Unwise
 //TODO - Add waveform generation on audio import, and waveform displaying playback bar
 //TODO - Add seek to playback bar
 //TODO - Change container volume control from percentage to decibel offset
-//TODO - Add project saving
+//x - Add project saving
