@@ -3,6 +3,18 @@ using NAudio.Wave.SampleProviders;
 
 namespace Unwise
 {
+    public static class AudioConversions
+    {
+        public static float dBToMultipier(float dB)
+        {
+            return (float)Math.Pow(10.0, dB / 20.0);
+        }
+        public static float centsToMultipier(float cents)
+        {
+            return (float)Math.Pow(2.0, cents / 1200.0);
+        }
+    }
+
     public class AudioPlayer
     {
         private IWavePlayer wavePlayer;
@@ -17,8 +29,8 @@ namespace Unwise
         public AudioPlayer()
         {
             wavePlayer = new WaveOutEvent();
-            Volume = 1.0f;
-            Pitch = 1.0f;
+            Volume = 0.0f;
+            Pitch = 0.0f;
         }
 
         public struct AudioPlaybackData
@@ -27,7 +39,7 @@ namespace Unwise
             public float Volume;
             public float Pitch;
 
-            public AudioPlaybackData(string filePath, float volume = 1.0f, float pitch = 1.0f)
+            public AudioPlaybackData(string filePath, float volume = 0.0f, float pitch = 0.0f)
             {
                 FilePath = filePath;
                 Volume = volume;
@@ -41,7 +53,7 @@ namespace Unwise
             // Null checks
             if (selectedNode == null || selectedNode?.Tag is not Container)
             {
-                return new AudioPlaybackData(string.Empty, 1.0f, 1.0f);
+                return new AudioPlaybackData(string.Empty, 0.0f, 0.0f);
             }
 
             // Try to get audio container from selected node. Setup resolved container
@@ -65,7 +77,7 @@ namespace Unwise
 
                 if (string.IsNullOrEmpty(filePath))
                 {
-                    return new AudioPlaybackData(string.Empty, 1.0f, 1.0f);
+                    return new AudioPlaybackData(string.Empty, 0.0f, 0.0f);
                 }
 
                 currentFilePath = filePath;
@@ -73,7 +85,7 @@ namespace Unwise
                 float resolvedPitch = resolvedAudioContainer.Pitch;
                 return new AudioPlaybackData(currentFilePath, resolvedVolume, resolvedPitch);
             }
-            return new AudioPlaybackData(string.Empty, 1.0f, 1.0f);
+            return new AudioPlaybackData(string.Empty, 0.0f, 0.0f);
         }
 
         // Helper function to resolved nested multi containers
@@ -149,8 +161,8 @@ namespace Unwise
             if (string.IsNullOrEmpty(audioPlaybackData.FilePath)) return; //Check audio container has audio data
 
             // Set properties and play
-            SetVolume(audioPlaybackData.Volume);
-            SetPitch(audioPlaybackData.Pitch);
+            SetVolume(AudioConversions.dBToMultipier(audioPlaybackData.Volume));
+            SetPitch(AudioConversions.centsToMultipier(audioPlaybackData.Pitch));
             LoadAudioFile(audioPlaybackData.FilePath);
             wavePlayer.Play();
         }

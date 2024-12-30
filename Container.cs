@@ -18,15 +18,15 @@ namespace Unwise
         public Container()
         {
             Name = GetType().Name;
-            Volume = 1;
-            Pitch = 1;
+            Volume = 0.0f;
+            Pitch = 0.0f;
         }
 
         public Container(string name)
         {
             Name = name;
-            Volume = 1;
-            Pitch = 1;
+            Volume = 0.0f;
+            Pitch = 0.0f;
         }
         public virtual Container GetContainerToPlay()
         {
