@@ -25,9 +25,12 @@ namespace Unwise
 //TODO +FEATURES+
 //TODO - Add sequence containers
 //TODO - Add switch containers
+
 //TODO - Change pitch-bending algorithmn
+
 //TODO - Add waveform generation on audio import, and waveform displaying playback bar
 //TODO - Add seek to playback bar
-//TODO - Change container volume control from percentage to decibel offset
+//x - Change container volume control from percentage to decibel offset, and pitch to cents
 //x - Add project saving
+
 //TODO - Make project save file just act as a reference for the project data location (save will create a project folder and a proj file within, then serialize all data to XMLs in respective folders)
