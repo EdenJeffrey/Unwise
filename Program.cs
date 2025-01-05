@@ -23,6 +23,8 @@ namespace Unwise
 //? - Check for consistency between container name / tag and node name / label etc.
 //=======================================================================================================
 //TODO +FEATURES+
+
+//TODO - Maybe add a GUID system for playing audio and everything? Keep a table somewhere and generate GUID's for containers when created, audio sources and files when imported etc. idk
 //TODO - Add sequence containers
 //TODO - Add switch containers
 

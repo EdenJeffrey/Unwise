@@ -30,7 +30,6 @@ namespace Unwise
             Containers = containers?.ToList() ?? new List<Container>();
             AvoidRepeatingLast = 1;
             LastPlayedHashes = new List<int>();
-            Containers = new List<Container>();
         }
 
         public override Container GetContainerToPlay()
